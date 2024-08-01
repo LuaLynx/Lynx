@@ -205,6 +205,137 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			end
 		end
 	)
+
+	function Flux:Notify(titletxt, text, time)
+		local GUI = Instance.new("ScreenGui")
+		local Main = Instance.new("Frame", GUI)
+		local title = Instance.new("TextLabel", Main)
+		local message = Instance.new("TextLabel", Main)
+		local corner = Instance.new("UICorner", Main)
+		local shadowholder = Instance.new("Frame", Main)
+		local ambientShadow = Instance.new("ImageLabel", shadowholder)
+		local penumbraShadow = Instance.new("ImageLabel", shadowholder)
+		local umbraShadow = Instance.new("ImageLabel", shadowholder)
+		local ambientShadowBetter = Instance.new("ImageLabel", shadowholder)
+		local penumbraShadowBetter = Instance.new("ImageLabel", shadowholder)
+		local umbraShadowBetter = Instance.new("ImageLabel", shadowholder)
+		GUI.Name = "NotificationOof"
+		GUI.Parent = game.CoreGui
+		Main.Name = "MainFrame"
+		Main.BackgroundColor3 = Color3.fromRGB(70,0,0)
+		Main.BorderSizePixel = 0
+		Main.Position = UDim2.new(1, 0, 0.872, 0)
+		Main.Size = UDim2.new(0, 195, 0, 62)
+	
+		title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		title.BackgroundTransparency = 0.9
+		title.Size = UDim2.new(1, 0, 0, 25)
+		title.Font = Enum.Font.GothamSemibold
+		title.Text = titletxt
+		title.TextColor3 = Color3.fromRGB(245, 245, 245)
+		title.TextSize = 15
+		
+		message.BackgroundColor3 = Color3.new(0, 0, 0)
+		message.BackgroundTransparency = 1
+		message.Position = UDim2.new(0, 0, 0, 27)
+		message.Size = UDim2.new(1, 0, 1, -30)
+		message.Font = Enum.Font.GothamSemibold
+		message.Text = text
+		message.TextColor3 = Color3.new(1, 1, 1)
+		message.TextSize = 14
+		message.TextScaled = false
+		
+		shadowholder.Name = "shadowHolder"
+		shadowholder.BorderSizePixel = 1
+		shadowholder.BackgroundTransparency = 1
+		shadowholder.Position = UDim2.new(-0.031, 0, -0.097, 0)
+		shadowholder.Size = UDim2.new(1.062, 0, 1.194, 0)
+		
+		umbraShadow.Name = "umbraShadow"
+		umbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+		umbraShadow.BackgroundTransparency = 1.000
+		umbraShadow.Position = UDim2.new(0.5, 0, 0.5, 2)
+		umbraShadow.Size = UDim2.new(1, 4, 1, 4)
+		umbraShadow.ZIndex = 0
+		umbraShadow.Image = "rbxassetid://1316045217"
+		umbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		umbraShadow.ImageTransparency = 0.860
+		umbraShadow.ScaleType = Enum.ScaleType.Slice
+		umbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		penumbraShadow.Name = "penumbraShadow"
+		penumbraShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+		penumbraShadow.BackgroundTransparency = 1.000
+		penumbraShadow.Position = UDim2.new(0.5, 0, 0.5, 2)
+		penumbraShadow.Size = UDim2.new(1, 4, 1, 4)
+		penumbraShadow.ZIndex = 0
+		penumbraShadow.Image = "rbxassetid://1316045217"
+		penumbraShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		penumbraShadow.ImageTransparency = 0.880
+		penumbraShadow.ScaleType = Enum.ScaleType.Slice
+		penumbraShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		ambientShadow.Name = "ambientShadow"
+		ambientShadow.Parent = shadowHolder
+		ambientShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+		ambientShadow.BackgroundColor3 = Color3.fromRGB(102, 101, 103)
+		ambientShadow.BackgroundTransparency = 1.000
+		ambientShadow.Position = UDim2.new(0.5, 0, 0.5, 2)
+		ambientShadow.Size = UDim2.new(1, 4, 1, 4)
+		ambientShadow.ZIndex = 0
+		ambientShadow.Image = "rbxassetid://1316045217"
+		ambientShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		ambientShadow.ImageTransparency = 0.880
+		ambientShadow.ScaleType = Enum.ScaleType.Slice
+		ambientShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		umbraShadowBetter.Name = "umbraShadow"
+		umbraShadowBetter.AnchorPoint = Vector2.new(0.5, 0.5)
+		umbraShadowBetter.BackgroundTransparency = 1.000
+		umbraShadowBetter.Position = UDim2.new(0.5, 0, 0.5, 2)
+		umbraShadowBetter.Size = UDim2.new(1, 4, 1, 4)
+		umbraShadowBetter.ZIndex = 0
+		umbraShadowBetter.Image = "rbxassetid://1316045217"
+		umbraShadowBetter.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		umbraShadowBetter.ImageTransparency = 0.860
+		umbraShadowBetter.ScaleType = Enum.ScaleType.Slice
+		umbraShadowBetter.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		penumbraShadowBetter.Name = "penumbraShadow"
+		penumbraShadowBetter.AnchorPoint = Vector2.new(0.5, 0.5)
+		penumbraShadowBetter.BackgroundTransparency = 1.000
+		penumbraShadowBetter.Position = UDim2.new(0.5, 0, 0.5, 2)
+		penumbraShadowBetter.Size = UDim2.new(1, 4, 1, 4)
+		penumbraShadowBetter.ZIndex = 0
+		penumbraShadowBetter.Image = "rbxassetid://1316045217"
+		penumbraShadowBetter.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		penumbraShadowBetter.ImageTransparency = 0.880
+		penumbraShadowBetter.ScaleType = Enum.ScaleType.Slice
+		penumbraShadowBetter.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		ambientShadowBetter.Name = "ambientShadow"
+		ambientShadowBetter.Parent = shadowHolder
+		ambientShadowBetter.AnchorPoint = Vector2.new(0.5, 0.5)
+		ambientShadowBetter.BackgroundColor3 = Color3.fromRGB(102, 101, 103)
+		ambientShadowBetter.BackgroundTransparency = 1.000
+		ambientShadowBetter.Position = UDim2.new(0.5, 0, 0.5, 2)
+		ambientShadowBetter.Size = UDim2.new(1, 4, 1, 4)
+		ambientShadowBetter.ZIndex = 0
+		ambientShadowBetter.Image = "rbxassetid://1316045217"
+		ambientShadowBetter.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		ambientShadowBetter.ImageTransparency = 0.880
+		ambientShadowBetter.ScaleType = Enum.ScaleType.Slice
+		ambientShadowBetter.SliceCenter = Rect.new(10, 10, 118, 118)
+		
+		corner.CornerRadius = UDim.new(0, 4)
+	
+		wait(0.1)
+		Main:TweenPosition(UDim2.new(0.830, 0, 0.872, 0), "Out", "Sine", 0.5)
+		wait(time)
+		Main:TweenPosition(UDim2.new(1, 0, 0.872, 0), "Out", "Sine", 0.5)
+		wait(0.6)
+		GUI:Destroy();
+	end
 	
 	function Flux:Notification(desc,buttontitle)
 		for i, v in next, MainFrame:GetChildren() do
