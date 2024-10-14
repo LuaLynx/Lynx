@@ -1,1 +1,71 @@
+local string = 'getgenv().Config = '
+local fullScript = string.."'"..getgenv().Config.."'".. [[
+    repeat
+        task.wait()
+    until game:IsLoaded()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaLynx/Lynx/refs/heads/main/TreeFinder"))()
+]]
 
+
+queue_on_teleport(fullScript)
+
+
+local Tree
+local size = 0
+local treesToFind = getgenv().Config
+local LumberServers = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://roblox-proxy-1.onrender.com/proxy"))
+local JobIds = (isfile("NotSameServer.txt") and game:GetService("HttpService"):JSONDecode(readfile("NotSameServer.txt"))) or {}
+
+if #JobIds >= 50 then
+    JobIds = {}
+end
+
+function FindServer()
+    for i, v in next, LumberServers.data do
+        if Server.id ~= game.JobId and not table.find(JobIds, Server.id) then
+            return Server
+        end
+    end
+end
+
+local ServerToJoin = FindServer()
+
+if not ServerToJoin then
+    repeat ServerToJoin = FindServer() task.wait() until ServerToJoin
+end
+
+JobIds[#JobIds + 1] = ServerToJoin.id
+writefile("NotSameServer.txt", game:GetService("HttpService"):JSONEncode(JobIds))
+
+for i, v in pairs(workspace:GetChildren()) do
+    if v.Name == "TreeRegion" then
+        for k, l in pairs(v:GetChildren()) do
+            if l:FindFirstChild("TreeClass") and l:FindFirstChild("WoodSection") and l:FindFirstChild("Owner") then
+                if (l.TreeClass.Value == treesToFind) and l.Owner.Value == nil then
+                    Tree = l
+                end
+            end
+        end
+    end
+end
+
+if Tree == nil then
+    game.ReplicatedStorage.Notices.SendUserNotice:Fire(string.format('No %s Wood Found!', treesToFind))
+    wait(2)
+    return
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, ServerToJoin.id, game.Players.LocalPlayer)
+end
+
+local Unit = 0
+for i,v in next, Tree:GetChildren() do
+    if v:IsA'BasePart' and v.Name == 'WoodSection' then
+        Unit = Unit + v.Size.X * v.Size.Y * v.Size.Z
+        size = math.floor(Unit * 100) / 100
+    end
+end
+
+if Tree ~= nil then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Tree["WoodSection"].CFrame
+
+game.ReplicatedStorage.Notices.SendUserNotice:Fire(string.format("Claimed a %s sized %s tree", size, treesToFind))
+end
