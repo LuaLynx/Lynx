@@ -22,8 +22,8 @@ end
 
 function FindServer()
     for i, v in next, LumberServers.data do
-        if Server.id ~= game.JobId and not table.find(JobIds, Server.id) then
-            return Server
+        if v.id ~= game.JobId and not table.find(JobIds, v.id) then
+            return v
         end
     end
 end
