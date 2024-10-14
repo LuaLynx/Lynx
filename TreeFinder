@@ -65,7 +65,15 @@ for i,v in next, Tree:GetChildren() do
 end
 
 if Tree ~= nil then
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Tree["WoodSection"].CFrame
+    repeat
+        wait()
+    
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Tree["WoodSection"].CFrame
+    
+        game:GetService("ReplicatedStorage").Interaction.ClientIsDragging:FireServer(Tree)
+    
+    until Tree["Owner"].Value == game.Players.LocalPlayer
 
-game.ReplicatedStorage.Notices.SendUserNotice:Fire(string.format("Claimed a %s sized %s tree", size, treesToFind))
+    game.ReplicatedStorage.Notices.SendUserNotice:Fire(string.format("Claimed a %s sized %s tree", size, treesToFind))
 end
+    
