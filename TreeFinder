@@ -13,7 +13,8 @@ queue_on_teleport(fullScript)
 local Tree
 local size = 0
 local treesToFind = getgenv().Config
-local LumberServers = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://roblox-proxy-1.onrender.com/proxy"))
+local url = "https://roblox-proxy-1.onrender.com/proxy?username=" .. Player.Name
+local LumberServers = game:GetService("HttpService"):JSONDecode(game:HttpGet(url))
 local JobIds = (isfile("NotSameServer.txt") and game:GetService("HttpService"):JSONDecode(readfile("NotSameServer.txt"))) or {}
 
 if #JobIds >= 50 then
